@@ -47,6 +47,10 @@ jobs:
       - build
       
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+      id-token: write
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE
@@ -79,7 +83,7 @@ jobs:
           pip install awsebcli --upgrade
           eb --version
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@master
         with:
           aws-access-key-id: ${{ secrets.AWS_CREDENTIAL_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_CREDENTIAL_SECRET }}
